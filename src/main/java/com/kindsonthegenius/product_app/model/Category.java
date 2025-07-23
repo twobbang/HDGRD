@@ -1,11 +1,11 @@
 package com.kindsonthegenius.product_app.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+// import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
+// import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -28,13 +28,13 @@ public class Category {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany(mappedBy = "category")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<SubCategory> subCategories;
+    // @OneToMany(mappedBy = "category")
+    // @JsonManagedReference
+    // @JsonIgnore
+    // private List<SubCategory> subCategories;
 
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private List<Product> products;
+    // @OneToMany(mappedBy = "category")
+    // @JsonIgnore
+    // private List<Product> products;
 
 }
