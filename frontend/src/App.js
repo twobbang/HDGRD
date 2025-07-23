@@ -9,6 +9,7 @@ import Login from './components/Login';
 import LoginSuccess from './components/LoginSuccess';
 import { AuthProvider } from './components/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import Category from './components/Category';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path='/login' element={<Login></Login>} />
             <Route path='/loginSuccess' element={<LoginSuccess></LoginSuccess>} />
             <Route path='/product' element={ <ProtectedRoute> <Product></Product> </ProtectedRoute>} />
+            <Route path='/category' element={<ProtectedRoute> <Category /> </ProtectedRoute>} />
           </Routes>
         </BrowserRouter>       
       </AuthProvider>
