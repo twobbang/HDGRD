@@ -18,8 +18,8 @@ function App() {
         <BrowserRouter>
           <ButtonAppBar></ButtonAppBar>
           <Routes>
-            <Route path='' element={<Products></Products>} />
-            <Route path='/products' element={<Products></Products>} />
+            <Route path='' element={<ProtectedRoute><Category></Category></ProtectedRoute>} />
+            <Route path='/products' element={<ProtectedRoute><Products></Products></ProtectedRoute>} />
             <Route path='/registration' element={<Registration></Registration>} />
             <Route path='/registrationSuccess' element={<RegistrationSuccess></RegistrationSuccess>} />
             <Route path='/login' element={<Login></Login>} />

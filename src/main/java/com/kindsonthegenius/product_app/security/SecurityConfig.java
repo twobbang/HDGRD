@@ -16,6 +16,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.util.List;
 import org.springframework.http.HttpMethod;
 
@@ -50,7 +52,8 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint((request, response, authException) -> {
                             // React 앱의 로그인 페이지로 리다이렉트
-                            response.sendRedirect("http://localhost:3000/login");
+                            //response.sendRedirect("http://localhost:3000/login");
+                            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                         })
                 )                
                 // 기본 인증 설정

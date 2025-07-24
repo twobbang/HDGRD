@@ -19,33 +19,34 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/api/users")
     public List<User> getUsers(){
         return userService.getUsers();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/api/user/{id}")
     public User getUser(@PathVariable("id") Integer id){
         return userService.getUser(id);
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping("/api/user/{id}")
     public User updateUser(@RequestBody() User user, @PathVariable("id") Long id){
         return userService.updateUser(user);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/api/register")
     public ResponseEntity<User> newUser(@RequestBody() User user){
         User newUser = userService.addUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/api/user/{id}")
     public void deleteUser(@PathVariable("id") Integer id){
         userService.deleteUser(id);
     }
 
     @PostMapping("/login")
+
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
         try{
             boolean isAuthenticated = userService.authenticate(loginRequest.getUsername(),loginRequest.getPassword());

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Snackbar, Alert } from '@mui/material';
-import axiosInstance from '../axiosConfig';
+
+import axios from 'axios';
 
 export default function Category() {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Category() {
   const handleSubmit = async () => {
     setSnackbarOpen(true);
     try {
-      await axiosInstance.post('/categories', category);
+      await axios.post('http://localhost:8080/categories', category, { withCredentials: true });
       setSnackbarMessage('Category was added successfully!');
       setSnackbarSeverity('success');
       setCategory({ title: '', metaTitle: '', slug: '', content: '' });

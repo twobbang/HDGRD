@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 import {
     Typography,
@@ -34,7 +34,7 @@ export default function Login() {
             password
         }
         try {
-            const response = await axios.post('http://localhost:8080/login', loginData);
+            const response = await axios.post('/login', loginData, { withCredentials: true });
             if (response.status === 200){
                 login();
                 navigate('/loginSuccess')

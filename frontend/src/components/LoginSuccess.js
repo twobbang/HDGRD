@@ -9,7 +9,7 @@ export default function LoginSuccess() {
         Start Now!!
       </Typography>
       <Typography variant="h6" align="center" gutterBottom>
-        <a href="/products">Go Home</a>
+        <a href="/category">Go Category</a>
       </Typography>
     </Box>
     </Container>

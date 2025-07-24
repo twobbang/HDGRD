@@ -1,6 +1,6 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Typography,
     Button,
@@ -43,7 +43,7 @@ export default function Registration() {
         setError('')
 
         try {
-            const response = await axios.post('http://localhost:8080/register', formData);
+            const response = await axios.post('http://localhost:8080/register', formData, { withCredentials: true });
 
             if(response.status === 201) {
                 navigate('/registrationSuccess')
