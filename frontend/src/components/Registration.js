@@ -43,7 +43,7 @@ export default function Registration() {
         setError('')
 
         try {
-            const response = await axios.post('http://localhost:8080/register', formData, { withCredentials: true });
+            const response = await axios.post('/register', formData, { withCredentials: true });
 
             if(response.status === 201) {
                 navigate('/registrationSuccess')

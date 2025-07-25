@@ -26,7 +26,7 @@ export default function Category() {
   const handleSubmit = async () => {
     setSnackbarOpen(true);
     try {
-      await axios.post('http://localhost:8080/categories', category, { withCredentials: true });
+      await axios.post('/categories', category, { withCredentials: true });
       setSnackbarMessage('Category was added successfully!');
       setSnackbarSeverity('success');
       setCategory({ title: '', metaTitle: '', slug: '', content: '' });
