@@ -94,7 +94,7 @@ export default function Products() {
   const handleDelete = async (id)  => {
      setSnackbarOpen(true)
     try {
-        await axiosInstance.delete(`http://localhost:8080/product/${id}`);
+        await axiosInstance.delete(`/product/${id}`);
         setProducts(products.filter(product => product.id !== id));
 
         setSnackbarMessage("Product was deleted successfully!")
@@ -111,7 +111,7 @@ export default function Products() {
   const handleEditProduct = async () => {
     setSnackbarOpen(true)
     try {
-        const response = await axiosInstance.put(`http://localhost:8080/product/${editProduct.id}`, {
+        const response = await axiosInstance.put(`/product/${editProduct.id}`, {
             ...editProduct,
             updatedAt: new Date().toISOString(),  // Set current datetime
         });
@@ -131,7 +131,7 @@ export default function Products() {
   const handleAddProduct = async () => {
     setSnackbarOpen(true)
     try {
-        const response = await axiosInstance.post('http://localhost:8080/products', {
+        const response = await axiosInstance.post('/products', {
             ...newProduct,
             createdAt: new Date().toISOString(),  // Set current datetime
         });
@@ -163,7 +163,7 @@ export default function Products() {
   );
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8080/products').then(response => {
+    axiosInstance.get('/products').then(response => {
       setProducts(response.data)
     }).catch((error) => {
       console.log("There was an error fetching the products", error)
@@ -171,7 +171,7 @@ export default function Products() {
   }, []);
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8080/categories').then(response => {
+    axiosInstance.get('/categories').then(response => {
       setCategories(response.data)
     }).catch((error) => {
       console.log("There was an error fetching the categories", error)
@@ -179,7 +179,7 @@ export default function Products() {
   }, []);
 
   useEffect(() => {
-    axiosInstance.get('http://localhost:8080/subCategories').then(response => {
+    axiosInstance.get('/subCategories').then(response => {
       setAllSubCategories(response.data)
     }).catch((error) => {
       console.log("There was an error fetching the suCategories", error)

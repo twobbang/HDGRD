@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { figmaTokens } from '../theme/figmaTokens';
 
 export default function ButtonAppBar() {
 
@@ -20,24 +21,118 @@ export default function ButtonAppBar() {
     navigate("/login")
   }
 
-  return (
+    return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar 
+        position="static" 
+        sx={{
+          backgroundColor: '#1976d2',
+          boxShadow: figmaTokens.shadows.light,
+          borderBottom: `1px solid ${figmaTokens.colors.border.light}`,
+        }}
+      >
+        <Toolbar sx={{ minHeight: '72px' }}>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{ 
+              mr: 3,
+              color: '#ffffff',
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-            Products List
+          
+          <Typography 
+            variant="h4" 
+            component="div" 
+            sx={{ 
+              flexGrow: 1,
+              color: '#ffffff',
+              fontWeight: 700,
+              letterSpacing: '-0.025em',
+            }}
+          >
+            AI Digital Community
           </Typography>
-          <Button onClick={logoutUser} color="inherit">Logout</Button>
-          <a href='/registration'>REGISTER</a>
+          
+          {/* Navigation Menu */}
+          <Button 
+            onClick={() => navigate('/webrtc')}
+            sx={{ 
+              mx: 1,
+              color: '#ffffff',
+              fontWeight: 500,
+              '&:hover': {
+                color: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            CCTV
+          </Button>
+          <Button 
+            onClick={() => navigate('/category')}
+            sx={{ 
+              mx: 1,
+              color: '#ffffff',
+              fontWeight: 500,
+              '&:hover': {
+                color: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            Category
+          </Button>
+          <Button 
+            onClick={() => navigate('/products')}
+            sx={{ 
+              mx: 1,
+              color: '#ffffff',
+              fontWeight: 500,
+              '&:hover': {
+                color: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            Products
+          </Button>
+          
+          <Button 
+            onClick={() => navigate('/registration')}
+            sx={{ 
+              mx: 1,
+              color: '#ffffff',
+              fontWeight: 500,
+              '&:hover': {
+                color: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            Register
+          </Button>
+          
+          <Button 
+            onClick={logoutUser} 
+            sx={{ 
+              ml: 2,
+              color: '#ffffff',
+              fontWeight: 500,
+              '&:hover': {
+                color: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              }
+            }}
+          >
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

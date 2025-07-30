@@ -49,10 +49,17 @@ export default function Login() {
     }
 
   return (
-    <Card sx={{ maxWidth: 900, margin: '30px auto', border: '3px solid #356' }}>
-      <CardHeader>
-        Login
-      </CardHeader>
+    <Card sx={{ 
+      maxWidth: 900, 
+      margin: '30px auto', 
+      border: '1px solid #e0e0e0',
+      paddingTop: '40px',
+      paddingBottom: '40px'
+    }}>
+      <CardHeader 
+        title="Login"
+        sx={{ color: '#000000' }}
+      />
       <CardContent>
           <Container maxWidth="xs">
           <Box
@@ -60,9 +67,9 @@ export default function Login() {
             onSubmit={handleLogin}
             sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
           >
-            <Typography variant="h5" component="h1" align="center">
+            {/* <Typography variant="h5" component="h1" align="center">
               Login
-            </Typography>
+            </Typography> */}
 
             {error && (
               <Typography variant="body2" color="error" align="center">
@@ -95,7 +102,7 @@ export default function Login() {
           </Box>
           </Container>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'center' }}>
         <Link to="/products" size="small" color="primary">
           Back Home
         </Link>

@@ -45,7 +45,12 @@ public class SecurityConfig {
                 // 나머지 요청은 인증된 사용자만 접근 가능
                 .authorizeHttpRequests(auth -> auth                        
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()                        
-                        .requestMatchers(HttpMethod.POST, "/register").permitAll()                        
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()  
+                        //테스트를 위해서 모든 권한을 풀었음음                      
+                        .requestMatchers(HttpMethod.GET, "/categories").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/categories").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/subCategories").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/products").permitAll()
                         .anyRequest().authenticated()
                 )
                 // formLogin을 사용하지 않고, 인증이 필요할 때 React의 로그인 페이지로 리다이렉트

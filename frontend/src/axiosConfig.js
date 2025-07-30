@@ -3,7 +3,9 @@ import axios from "axios";
 const axiosInstance = axios.create({
     withCredentials: true,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
     }
 });
 

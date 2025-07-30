@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Snackbar, Alert } from '@mui/material';
-
-import axios from 'axios';
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Snackbar, Alert, Box, Typography, Container } from '@mui/material';
+import axiosInstance from '../axiosConfig';
+import { figmaTokens } from '../theme/figmaTokens';
 
 export default function Category() {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Category() {
   const handleSubmit = async () => {
     setSnackbarOpen(true);
     try {
-      await axios.post('/categories', category, { withCredentials: true });
+      await axiosInstance.post('/categories', category);
       setSnackbarMessage('Category was added successfully!');
       setSnackbarSeverity('success');
       setCategory({ title: '', metaTitle: '', slug: '', content: '' });
@@ -38,13 +38,70 @@ export default function Category() {
   };
 
   return (
-    <div>
-      <Button variant="contained" color="primary" onClick={handleClickOpen} sx={{ my: 2 }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Box sx={{ mb: 4 }}>
+        <Typography 
+          variant="h2" 
+          sx={{ 
+            color: figmaTokens.colors.text.primary,
+            fontWeight: 700,
+            letterSpacing: '-0.025em',
+            mb: 2
+          }}
+        >
+          Category Management
+        </Typography>
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            color: figmaTokens.colors.text.secondary,
+            mb: 3
+          }}
+        >
+          Create and manage categories for your content
+        </Typography>
+      </Box>
+
+      <Button 
+        variant="contained" 
+        onClick={handleClickOpen} 
+        sx={{ 
+          mb: 4,
+          backgroundColor: figmaTokens.colors.primary.main,
+          color: figmaTokens.colors.primary.contrastText,
+          borderRadius: figmaTokens.borderRadius.medium,
+          padding: '12px 24px',
+          fontWeight: 600,
+          textTransform: 'none',
+          fontSize: '0.875rem',
+          '&:hover': {
+            backgroundColor: figmaTokens.colors.primary.dark,
+          }
+        }}
+      >
         Add Category
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add Category</DialogTitle>
-        <DialogContent>
+
+      <Dialog 
+        open={open} 
+        onClose={handleClose}
+        PaperProps={{
+          sx: {
+            borderRadius: figmaTokens.borderRadius.large,
+            boxShadow: figmaTokens.shadows.heavy,
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          color: figmaTokens.colors.text.primary,
+          fontWeight: 600,
+          fontSize: '1.25rem',
+          borderBottom: `1px solid ${figmaTokens.colors.border.light}`,
+          pb: 2
+        }}>
+          Add Category
+        </DialogTitle>
+        <DialogContent sx={{ pt: 3 }}>
           <TextField
             margin="dense"
             name="title"
@@ -54,6 +111,21 @@ export default function Category() {
             required
             value={category.title}
             onChange={handleChange}
+            sx={{
+              mb: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: figmaTokens.borderRadius.medium,
+                '& fieldset': {
+                  borderColor: figmaTokens.colors.border.medium,
+                },
+                '&:hover fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+              },
+            }}
           />
           <TextField
             margin="dense"
@@ -63,6 +135,21 @@ export default function Category() {
             fullWidth
             value={category.metaTitle}
             onChange={handleChange}
+            sx={{
+              mb: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: figmaTokens.borderRadius.medium,
+                '& fieldset': {
+                  borderColor: figmaTokens.colors.border.medium,
+                },
+                '&:hover fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+              },
+            }}
           />
           <TextField
             margin="dense"
@@ -73,6 +160,21 @@ export default function Category() {
             required
             value={category.slug}
             onChange={handleChange}
+            sx={{
+              mb: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: figmaTokens.borderRadius.medium,
+                '& fieldset': {
+                  borderColor: figmaTokens.colors.border.medium,
+                },
+                '&:hover fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+              },
+            }}
           />
           <TextField
             margin="dense"
@@ -81,30 +183,78 @@ export default function Category() {
             type="text"
             fullWidth
             multiline
-            minRows={2}
+            minRows={3}
             value={category.content}
             onChange={handleChange}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                borderRadius: figmaTokens.borderRadius.medium,
+                '& fieldset': {
+                  borderColor: figmaTokens.colors.border.medium,
+                },
+                '&:hover fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: figmaTokens.colors.primary.main,
+                },
+              },
+            }}
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
+        <DialogActions sx={{ p: 3, pt: 2 }}>
+          <Button 
+            onClick={handleClose} 
+            sx={{ 
+              color: figmaTokens.colors.text.secondary,
+              fontWeight: 500,
+              '&:hover': {
+                backgroundColor: figmaTokens.colors.background.default,
+              }
+            }}
+          >
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color="primary" variant="contained">
+          <Button 
+            onClick={handleSubmit} 
+            variant="contained"
+            sx={{
+              backgroundColor: figmaTokens.colors.primary.main,
+              color: figmaTokens.colors.primary.contrastText,
+              borderRadius: figmaTokens.borderRadius.medium,
+              padding: '8px 24px',
+              fontWeight: 600,
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: figmaTokens.colors.primary.dark,
+              }
+            }}
+          >
             Add Category
           </Button>
         </DialogActions>
       </Dialog>
+
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={4000}
         onClose={handleSnackbarClose}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ display: 'flex', alignItems: 'center', minHeight: '80px' }}>
+        <Alert 
+          onClose={handleSnackbarClose} 
+          severity={snackbarSeverity} 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            minHeight: '80px',
+            borderRadius: figmaTokens.borderRadius.medium,
+            fontWeight: 500,
+          }}
+        >
           {snackbarMessage}
         </Alert>
       </Snackbar>
-    </div>
+    </Container>
   );
 }
